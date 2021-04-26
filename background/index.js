@@ -16,3 +16,7 @@ function sendMessageToContentScript(){
 }
 
 sendMessageToContentScript()
+
+chrome.runtime.onMessage.addListener(function() {
+    sendMessageToContentScript()
+});

@@ -17,3 +17,5 @@ chrome.runtime.onMessage.addListener(function (options) {
     enableEdit(options.allowEdit)
     clickIntercept(options.clearClick)
 });
+
+chrome.runtime.sendMessage('init');
