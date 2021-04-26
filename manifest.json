@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "html-edit",
+    "version": "0.1.0",
+    "description": "开启可让页面任意文本变得可编辑",
+    "icons": {
+        "512": "./icon/edit.png"
+    },
+    "browser_action": {
+        "default_icon": "./icon/edit.png",
+        "default_tilte": "html-edit",
+        "default_popup": "./popup/popup.html"
+    },
+    "background": {
+        "scripts": ["./js/background.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["./js/main.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
