@@ -1,10 +1,12 @@
 const background = chrome.extension.getBackgroundPage()
 
 const editSwitch = document.querySelector('#edit-switch')
-const clickDisable = document.querySelector('#click-disabled')
+const styleSwitch = document.querySelector('#style-switch')
+const clickSwitch = document.querySelector('#click-switch')
 const operateStatus = [
     {dom: editSwitch, key: 'allowEdit', status: background.allowEdit},
-    {dom: clickDisable, key: 'clearClick', status: background.clearClick}]
+    {dom: styleSwitch, key: 'styleEdit', status: background.styleEdit},
+    {dom: clickSwitch, key: 'clearClick', status: background.clearClick}]
 
 operateStatus.forEach(item => {
     init(item.dom, item.status)

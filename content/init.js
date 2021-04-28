@@ -3,6 +3,11 @@ function enableEdit(isEnable){
     document.designMode=isEnable ? 'on' : 'off'
 }
 
+function editStyle(styleChange){
+    if(styleChange) window.addEventListener('click', openStylePopup , true)
+    else window.removeEventListener('click', openStylePopup, true)
+}
+
 function clickIntercept(removeClick){
     if(removeClick) window.addEventListener('click', clickCallback , true)
     else window.removeEventListener('click', clickCallback, true)
@@ -15,6 +20,7 @@ function clickCallback(e){
 
 chrome.runtime.onMessage.addListener(function (options) {
     enableEdit(options.allowEdit)
+    editStyle(options.styleEdit)
     clickIntercept(options.clearClick)
 });
 
