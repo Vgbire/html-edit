@@ -5,7 +5,10 @@ function enableEdit(isEnable){
 
 function editStyle(styleChange){
     if(styleChange) window.addEventListener('click', openStylePopup , true)
-    else window.removeEventListener('click', openStylePopup, true)
+    else {
+        document.body.click()
+        window.removeEventListener('click', openStylePopup, true)
+    }
 }
 
 function clickIntercept(removeClick){
