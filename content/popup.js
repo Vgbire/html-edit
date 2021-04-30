@@ -14,15 +14,15 @@ styleList.forEach(item=>{
     popup.appendChild(styleItem)
 })
 
-popup.onmousedown = function() {
-  if(event.target.tagName !== "INPUT"){
+popup.onmousedown = function(e) {
+  if(e.target.tagName !== "INPUT"){
     let disX = 0
     let disY = 0
-    disX = event.clientX - popup.offsetLeft
-    disY = event.clientY - popup.offsetTop
-    document.onmousemove = function() {	
-      let l = event.clientX - disX
-      let t = event.clientY - disY
+    disX = e.clientX - popup.offsetLeft
+    disY = e.clientY - popup.offsetTop
+    document.onmousemove = function(e) {	
+      let l = e.clientX - disX
+      let t = e.clientY - disY
       if (l < 0){
           l = 0
       } else if (l > document.documentElement.clientWidth - popup.offsetWidth){
