@@ -1,5 +1,5 @@
 window.allowEdit = false
-window.styleEdit = false
+window.styleEdit = true
 window.clearClick = false
 
 function changeStatus(key, value){

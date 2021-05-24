@@ -1,42 +1,50 @@
 const currentTarget = {
     dom: null,
+    style: null,
     boxSizing: 'inherit',
     border: 'inherit'
 }
+
+let canBeClosed  = true
 
 function openStylePopup(e){
   const popup = document.querySelector("#html-edit__popup")
   const popupComputedStyle = window.getComputedStyle(popup)
   const popupStyle = popup.style
   if(popupComputedStyle.display === "none"){
-      displayPopup(e, popup, popupStyle)
-  } else if(popupComputedStyle.display !== "none" && !popup.contains(e.target)){
-      popupStyle.display = "none"
-      currentTarget.dom.style.boxSizing = currentTarget.boxSizing
-      currentTarget.dom.style.border = currentTarget.border
+    displayPopup(e, popup, popupStyle)
+  } else if (popupComputedStyle.display !== "none" && !popup.contains(e.target) && canBeClosed){
+    popupStyle.display = "none"
+    currentTarget.dom.style = currentTarget.style
+    currentTarget.dom.style.boxSizing = currentTarget.boxSizing
+    currentTarget.dom.style.border = currentTarget.border
   }
+  canBeClosed = true
 }
 
-const styleList = ["width", "height", "fontSize", "color"]
-
 function displayPopup(e, popup, popupStyle) {
-    const target = e.target
-    const finalStyle = window.getComputedStyle(target)
-    currentTarget.dom = target
-    currentTarget.boxSizing = finalStyle.boxSizing
-    currentTarget.border = finalStyle.border
-    target.style.border = "1px solid #000"
-    target.style.boxSizing = "border-box"
-    if(finalStyle.display === "inline") target.style.display = "inline-block"
+  const target = e.target
+  const finalStyle = window.getComputedStyle(target)
+  currentTarget.dom = target
+  currentTarget.boxSizing = finalStyle.boxSizing
+  currentTarget.border = finalStyle.border
+  currentTarget.style = target.style
+  target.style.border = "1px solid #000"
+  target.style.boxSizing = "border-box"
+  if(finalStyle.display === "inline") target.style.display = "inline-block"
 
-    styleList.forEach(item => {
-        const dom = popup.querySelector('.input.'+item)
-        dom.value = finalStyle[item]
-        dom.oninput = function(){
-          currentTarget.dom.style[item] = dom.value
-        }
-    })
-    popupStyle.left = e.clientX + "px"
-    popupStyle.top = e.clientY + "px"
-    popupStyle.display = "inline-block"
+  const styleNames = document.querySelectorAll('.style-name')
+  const styleValues =  document.querySelectorAll('.style-value')
+
+  styleValues.forEach((item,index) => {
+    const style = styleNames[index].textContent || styleNames[index].value
+    item.value = finalStyle[style]
+    item.oninput = function(){
+      currentTarget.dom.style[style] = item.value
+    }
+  })
+
+  popupStyle.left = e.clientX + "px"
+  popupStyle.top = e.clientY + "px"
+  popupStyle.display = "inline-block"
 }

@@ -1,18 +1,60 @@
 const popup = document.createElement('div')
 popup.id = "html-edit__popup"
 
-styleList.forEach(item=>{
-    const styleItem = document.createElement('div')
-    styleItem.className = "style-item"
-    const label = document.createElement('span')
-    label.className = "label"
-    label.textContent = item + "："
-    const input = document.createElement('input')
-    input.className = "input " + item
-    styleItem.appendChild(label)
-    styleItem.appendChild(input)
-    popup.appendChild(styleItem)
+const styleList = ["width", "height", "font-size", "color"]
+
+popup.addEventListener('mousedown',e=>{
+  e.stopPropagation()
+  canBeClosed = false
 })
+
+popup.addEventListener('mouseup',e=>{
+  canBeClosed = false
+})
+
+
+styleList.forEach(item=>{
+  const styleItem = document.createElement('div')
+  styleItem.classList.add("style-item")
+  const styleName = document.createElement('span')
+  styleName.classList.add("style-name")
+  styleName.textContent = item
+  const span = document.createElement('span')
+  span.textContent = "："
+  const styleValue = document.createElement('input')
+  styleValue.classList.add("style-value")
+  styleItem.appendChild(styleName)
+  styleItem.appendChild(span)
+  styleItem.appendChild(styleValue)
+  popup.appendChild(styleItem)
+})
+
+const addButton = document.createElement('span')
+addButton.classList.add("add-style")
+addButton.textContent = "+"
+addButton.onclick = function(){
+  const styleItem = document.createElement('div')
+  styleItem.classList.add("style-item")
+  const styleName = document.createElement('input')
+  styleName.classList.add("style-name")
+  const span = document.createElement('span')
+  span.textContent = "："
+  const styleValue = document.createElement('input')
+  styleValue.classList.add("style-value")
+  styleItem.appendChild(styleName)
+  styleItem.appendChild(span)
+  styleItem.appendChild(styleValue)
+  let style
+  popup.insertBefore(styleItem, addButton)
+  styleName.oninput = function(){
+    style = styleName.value
+    styleValue.oninput = function(){
+      currentTarget.dom.style[style] = styleValue.value
+    }
+  }
+}
+
+popup.appendChild(addButton)
 
 popup.onmousedown = function(e) {
   if(e.target.tagName !== "INPUT"){
