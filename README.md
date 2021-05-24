@@ -1,1 +1,2 @@
-> 一个可以让页面任何一处地方变得可编辑的谷歌小插件
+> Google plug-in, can make any part of the page can be edited, can facilitate the development of debugging page tools.
+> Including disable mouse events, perhaps the most interesting feature is to dynamically modify the style.
