@@ -5,8 +5,9 @@ function enableEdit(isEnable){
 
 function editStyle(styleChange){
     if(styleChange) window.addEventListener('click', openStylePopup , true)
-    else if(window.getComputedStyle(document.querySelector("#html-edit__popup")).display !== "none"){
-        document.body.click()
+    else {
+        if(window.getComputedStyle(document.querySelector("#html-edit__popup")).display !== "none")
+            document.body.click()
         window.removeEventListener('click', openStylePopup, true)
     }
 }
