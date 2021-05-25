@@ -18,6 +18,7 @@ function clickIntercept(removeClick){
 }
 
 function clickCallback(e){
+    if(e.target === document.querySelector('.add-style')) return
     e.preventDefault()
     e.stopPropagation()
 }

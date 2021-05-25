@@ -11,6 +11,7 @@
 
 #html-edit__popup * {
     user-select: none;
+    box-sizing: border-box;
 }
 
 #html-edit__popup input:focus {
