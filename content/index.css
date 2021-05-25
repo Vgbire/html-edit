@@ -1,5 +1,5 @@
 #html-edit__popup {
-    width: 210px;
+    width: 200px;
     padding: 8px;
     z-index: 9999;
     display: none;
@@ -13,7 +13,7 @@
     user-select: none;
 }
 
-#html-edit__popup :focus-visible {
+#html-edit__popup input:focus {
     outline: none;
 }
 
@@ -22,7 +22,7 @@
 }
 
 #html-edit__popup .style-name {
-    width: 80px;
+    width: 70px;
     height: 28px;
     font-size: 16px;
     font-weight: 600;
@@ -31,7 +31,7 @@
 }
 
 #html-edit__popup .style-value {
-    width: 110px;
+    width: 100px;
     height: 28px;
     font-size: 16px;
 }
