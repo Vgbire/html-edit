@@ -4,12 +4,13 @@
     z-index: 9999;
     display: none;
     position: absolute;
+    box-sizing: content-box;
     background-color: #cce8cf;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
 }
 
 #html-edit__popup * {
+    font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
     user-select: none;
     box-sizing: border-box;
 }
@@ -20,6 +21,10 @@
 
 #html-edit__popup .style-item {
     margin: 7px 0;
+}
+
+#html-edit__popup .style-item * {
+    line-height: 33px;
 }
 
 #html-edit__popup .style-name {
