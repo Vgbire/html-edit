@@ -1,25 +1,25 @@
 {
-    "manifest_version": 2,
-    "name": "html-edit",
-    "version": "1.4.0",
-    "description": "开启可让页面任意文本变得可编辑",
-    "icons": {
-        "512": "./icon/edit.png"
-    },
-    "browser_action": {
-        "default_icon": "./icon/edit.png",
-        "default_tilte": "html-edit",
-        "default_popup": "./popup/index.html"
-    },
-    "background": {
-        "scripts": ["./background/index.js"]
-    },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["./content/style.js", "./content/popup.js", "./content/init.js"],
-            "css": ["./content/index.css"],
-            "run_at": "document_end"
-        }
-    ]
+  "manifest_version": 2,
+  "name": "html-edit",
+  "version": "1.4.0",
+  "description": "开启可让页面任意文本变得可编辑",
+  "icons": {
+    "512": "./icon/edit.png"
+  },
+  "browser_action": {
+    "default_icon": "./icon/edit.png",
+    "default_tilte": "html-edit",
+    "default_popup": "./popup/index.html"
+  },
+  "background": {
+    "scripts": ["./background/index.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content/style.js", "./content/popup.js", "./content/init.js"],
+      "css": ["./content/index.css"],
+      "run_at": "document_end"
+    }
+  ]
 }
