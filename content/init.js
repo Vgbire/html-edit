@@ -27,9 +27,10 @@ function darkMode(open) {
 }
 
 function selectMode(open) {
-  document.querySelectorAll('*').forEach((item) => {
-    item.style['user-select'] = open ? 'auto' : 'none'
-  })
+  if (open)
+    document.querySelectorAll('*').forEach((item) => {
+      item.style['user-select'] = 'auto'
+    })
 }
 
 chrome.runtime.onMessage.addListener(function (options) {
