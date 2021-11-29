@@ -8,7 +8,7 @@
   },
   "browser_action": {
     "default_icon": "./icon/edit.png",
-    "default_tilte": "html-edit",
+    "default_title": "html-edit",
     "default_popup": "./popup/index.html"
   },
   "background": {
