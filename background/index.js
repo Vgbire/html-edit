@@ -1,27 +1,30 @@
-const operationName = ['editSwitch', 'styleSwitch', 'clickSwitch', 'darkSwitch', 'selectSwitch']
-
-operationName.forEach((item) => {
-  window[item] = false
-})
+const operations = {
+  editSwitch: false,
+  styleSwitch: false,
+  clickSwitch: false,
+  darkSwitch: false,
+  selectSwitch: false,
+}
 
 function changeStatus(key, value) {
-  window[key] = value
+  operations[key] = value
   sendMessageToContentScript()
 }
 
 function sendMessageToContentScript() {
-  const options = {}
-  operationName.forEach((item) => {
-    options[item] = window[item]
-  })
   chrome.tabs.query({}, function (tabs) {
     tabs.forEach((item) => {
-      chrome.tabs.sendMessage(item.id, options)
+      chrome.tabs.sendMessage(item.id, operations)
     })
   })
 }
 
-sendMessageToContentScript()
+chrome.runtime.onConnect.addListener(function (port) {
+  port.postMessage(operations)
+  port.onMessage.addListener(({ key, status }) => {
+    changeStatus(key, status)
+  })
+})
 
 chrome.runtime.onMessage.addListener(function () {
   sendMessageToContentScript()
