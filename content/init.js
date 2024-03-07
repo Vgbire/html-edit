@@ -6,7 +6,11 @@ function enableEdit(isEnable) {
 function editStyle(styleChange) {
   if (styleChange) window.addEventListener('click', openStylePopup, true)
   else {
-    if (window.getComputedStyle(document.querySelector('#html-edit__popup')).display !== 'none') document.body.click()
+    if (
+      window.getComputedStyle(document.querySelector('#html-edit__popup'))
+        .display !== 'none'
+    )
+      document.body.click()
     window.removeEventListener('click', openStylePopup, true)
   }
 }
@@ -33,12 +37,10 @@ function selectMode(open) {
     })
 }
 
-chrome.runtime.onMessage.addListener(function (options) {
-  enableEdit(options.editSwitch)
-  editStyle(options.styleSwitch)
-  clickIntercept(options.clickSwitch)
-  darkMode(options.darkSwitch)
-  selectMode(options.selectSwitch)
+chrome.storage.onChanged.addListener((changes) => {
+  changes.editSwitch && enableEdit(changes.editSwitch.newValue)
+  changes.styleSwitch && editStyle(changes.styleSwitch.newValue)
+  changes.clickSwitch && clickIntercept(changes.clickSwitch.newValue)
+  changes.darkSwitch && darkMode(changes.darkSwitch.newValue)
+  changes.selectSwitch && selectMode(changes.selectSwitch.newValue)
 })
-
-chrome.runtime.sendMessage('init')

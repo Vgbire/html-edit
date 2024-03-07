@@ -9,8 +9,7 @@ function init(dom, status) {
   dom.classList[status ? 'add' : 'remove']('is-allow')
 }
 
-const port = chrome.runtime.connect({ name: 'action' })
-port.onMessage.addListener((operations) => {
+chrome.storage.local.get().then((operations) => {
   const domId = [
     '#edit-switch',
     '#style-switch',
@@ -32,7 +31,8 @@ port.onMessage.addListener((operations) => {
     item.dom.onclick = function () {
       item.status = !item.status
       init(item.dom, item.status)
-      port.postMessage({ key: item.key, status: item.status })
+      operations[item.key] = item.status
+      chrome.storage.local.set(operations)
     }
   })
 })

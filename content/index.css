@@ -1,5 +1,5 @@
 #html-edit__popup {
-  width: 200px;
+  width: 230px;
   padding: 8px;
   z-index: 9999;
   display: none;
@@ -10,7 +10,8 @@
 }
 
 #html-edit__popup * {
-  font-family: PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Verdana, Roboto, Noto, Helvetica Neue, sans-serif;
+  font-family: PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Verdana,
+    Roboto, Noto, Helvetica Neue, sans-serif;
   user-select: none;
   box-sizing: border-box;
 }
@@ -28,7 +29,7 @@
 }
 
 #html-edit__popup .style-name {
-  width: 70px;
+  width: 100px;
   height: 28px;
   font-size: 16px;
   font-weight: 600;
@@ -49,9 +50,9 @@
   cursor: pointer;
   display: inline-block;
   background: #f56c6c;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
+  width: 20px;
+  height: 20px;
+  line-height: 17px;
   border-radius: 50%;
   color: #fff;
 }
