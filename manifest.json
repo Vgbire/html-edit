@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "html-edit",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Some bizarre web features",
   "icons": {
     "512": "./icon/edit.png"
@@ -14,7 +14,12 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["./content/style.js", "./content/popup.js", "./content/init.js"],
+      "js": [
+        "./content/utils.js",
+        "./content/style.js",
+        "./content/popup.js",
+        "./content/index.js"
+      ],
       "css": ["./content/index.css"],
       "run_at": "document_end"
     }
