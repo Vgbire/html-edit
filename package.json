@@ -1,0 +1,47 @@
+{
+  "name": "HTML Edit",
+  "version": "1.9.0",
+  "description": "Some bizarre web features",
+  "type": "module",
+  "keywords": [
+    "storage",
+    "localStorage",
+    "sessionStorage",
+    "cookie"
+  ],
+  "license": "MIT",
+  "authors": {
+    "name": "Vgbire",
+    "email": "1053254202@qq.com"
+  },
+  "homepage": "https://github.com/Vgbire/storage-copy",
+  "repository": "https://github.com/Vgbire/storage-copy",
+  "bugs": "https://github.com/Vgbire/storage-copy/issues",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.5.0",
+    "antd": "^5.20.6",
+    "i18next": "^23.15.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.25",
+    "@eslint/js": "^9.9.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@types/chrome": "^0.0.271",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1"
+  }
+}

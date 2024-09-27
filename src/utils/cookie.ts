@@ -1,4 +1,4 @@
-const xCookie = {
+export const xCookie = {
   get: function (sKey) {
     return (
       decodeURIComponent(
@@ -13,7 +13,8 @@ const xCookie = {
       ) || null
     )
   },
-  set: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+  set: function (sKey, sValue, vEnd, sPath, sDomain?, bSecure?) {
+    // eslint-disable-next-line no-useless-escape
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false
     }
@@ -66,12 +67,14 @@ const xCookie = {
     ).test(document.cookie)
   },
   keys: /* optional method: you can safely remove it! */ function () {
-    var aKeys = document.cookie
+    const aKeys = document.cookie
+      // eslint-disable-next-line no-useless-backreference, no-useless-escape
       .replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "")
+      // eslint-disable-next-line no-useless-escape
       .split(/\s*(?:\=[^;]*)?;\s*/)
-    for (var nIdx = 0; nIdx < aKeys.length; nIdx++) {
+    for (let nIdx = 0; nIdx < aKeys.length; nIdx++) {
       aKeys[nIdx] = decodeURIComponent(aKeys[nIdx])
     }
     return aKeys
-  },
+  }
 }
