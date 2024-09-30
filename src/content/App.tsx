@@ -50,6 +50,14 @@ export default function App() {
   const [show, setShow] = useState(false)
   const [position, setPosition] = useState({ top: "0", left: "0" })
 
+  const reset = () => {
+    // 注释取消关闭编辑样式窗时样式还原
+    // currentTarget.dom.style = currentTarget.style
+    currentTarget.current.dom.style.boxSizing = currentTarget.current.boxSizing
+    currentTarget.current.dom.style.border = currentTarget.current.border
+    setShow(false)
+  }
+
   useEffect(() => {
     const openStylePopup = (e) => {
       const show = !!styleContainer.current
@@ -77,18 +85,13 @@ export default function App() {
         setPosition({ top: e.clientY + "px", left: e.clientX + "px" })
         setShow(true)
       } else if (show === true && !styleContainer.current.contains(e.target)) {
-        // 注释取消关闭编辑样式窗时样式还原
-        // currentTarget.dom.style = currentTarget.style
-        currentTarget.current.dom.style.boxSizing =
-          currentTarget.current.boxSizing
-        currentTarget.current.dom.style.border = currentTarget.current.border
-        setShow(false)
+        reset()
       }
     }
     function editStyle(styleChange) {
       if (styleChange) window.addEventListener("click", openStylePopup, true)
       else {
-        document.body.click()
+        reset()
         window.removeEventListener("click", openStylePopup, true)
       }
     }
