@@ -95,12 +95,20 @@ export default function App() {
         window.removeEventListener("click", openStylePopup, true)
       }
     }
-    chrome.storage.local.get().then((operations: any) => {
-      if (operations.editSwitch) enableEdit(operations.editSwitch)
-      if (operations.styleSwitch) editStyle(operations.styleSwitch)
-      if (operations.clickSwitch) clickIntercept(operations.clickSwitch)
-      if (operations.darkSwitch) darkMode(operations.darkSwitch)
-      if (operations.selectSwitch) selectMode(operations.selectSwitch)
+    const init = () => {
+      chrome.storage.local.get().then((operations: any) => {
+        if (operations.editSwitch) enableEdit(operations.editSwitch)
+        if (operations.styleSwitch) editStyle(operations.styleSwitch)
+        if (operations.clickSwitch) clickIntercept(operations.clickSwitch)
+        if (operations.darkSwitch) darkMode(operations.darkSwitch)
+        if (operations.selectSwitch) selectMode(operations.selectSwitch)
+      })
+    }
+    init()
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        init()
+      }
     })
     chrome.storage.onChanged.addListener((changes) => {
       if (changes.editSwitch) enableEdit(changes.editSwitch.newValue)
